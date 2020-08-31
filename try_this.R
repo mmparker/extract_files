@@ -19,6 +19,6 @@ software_inventory <- this_file_parsed %>%
     html_table()
 
 
-sort(unique(software_inventory[['Date Installed']]))
+as.Date(as.character(software_inventory[['Date Installed']]), format = "%Y%m%d")
 
 

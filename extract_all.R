@@ -34,7 +34,7 @@ software_info_all <- lapply(files_to_process, FUN = function(this_file) {
     
     # Add software inventory 
     software_inventory['Workstation Name'] <- machine_info[ grepl(x = machine_info[ , 1], pattern = 'Workstation Name'), 2]
-    software_inventory['Logon Credentials'] <- machine_info[ grepl(x = machine_info[ , 1], pattern = 'Logon'), 2]
+    software_inventory['Logon Credentials'] <- substr(machine_info[ grepl(x = machine_info[ , 1], pattern = 'Logon'), 2], 5, 100)
     software_inventory['Report Datetime'] <- report_datetime
     
     extracted_table

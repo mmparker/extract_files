@@ -18,6 +18,7 @@ software_inventory <- this_file_parsed %>%
     html_node("#softwareInventory") %>% 
     html_table()
 
-sort(unique(software_inventory['Date Installed']))
+names(software_inventory)
+#sort(unique(software_inventory['Date Installed']))
 
 

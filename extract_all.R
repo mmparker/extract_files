@@ -39,7 +39,7 @@ software_inventory_all <- lapply(files_to_process, FUN = function(this_file) {
     
     software_inventory
     
-}) %>% bind_rows()
+}) %>% do.call("rbind", .)
 
 
 # Check the results

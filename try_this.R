@@ -25,10 +25,10 @@ this_file_parsed <- readLines(this_file) %>%
     read_html()
 
 
-machine_info <- this_file_parsed %>% 
-    html_node("#machineInfo") %>% 
+software_inventory <- this_file_parsed %>% 
+    html_node("#softwareInventory") %>% 
     html_table(header = TRUE)
 
+sr(software_inventory)
 
 
-str(machine_info)

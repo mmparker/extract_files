@@ -1,19 +1,28 @@
 
+library(dplyr)
+library(rvest)
+
+files_to_process <- list.files('r:/shared documents/', 
+                               pattern = 'html', 
+                               full.names = TRUE)
 
 
-report_datetimes <- c("(Generated: 10/30/2020 10:24:23 PM)",
-                      "(Generated: 1/1/2020 1:24:23 PM)",
-                      "(Generated: 1/1/2020 1:24:23 AM)")
+# Check that these are the right file paths
+files_to_process
+
+this_file <- files_to_process[1]
 
 
+# Delete the "Software Inventory" multi-column header
+this_file_parsed <- readLines(this_file) %>% 
+    .[!grepl(x = ., pattern = "Software Inventory")] %>%
+    paste(collapse = "") %>%
+    read_html()
 
-# One way: convert it directly to a POSIXct timestamp
-as.POSIXct(report_datetimes, format = "(Generated: %m/%d/%Y %I:%M:%S %p)")
+software_inventory <- this_file_parsed %>% 
+    html_node("#softwareInventory") %>% 
+    html_table()
 
+sort(unique(software_inventory['Date Installed']))
 
-# Or just leave it as a string, if you prefer this date format
-sub(x = report_datetimes,
-    pattern = ".Generated: (\\d*/\\d*/\\d* \\d*:\\d*:\\d* \\w\\w).",
-    replacement = "\\1")
-           
 

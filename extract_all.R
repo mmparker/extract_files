@@ -1,4 +1,3 @@
-
 library(dplyr)
 library(rvest)
 
@@ -9,7 +8,7 @@ files_to_process <- list.files('r:/shared documents/',
 
 
 
-extracted_tables <- lapply(files_to_process, FUN = function(this_file) {
+software_info_all <- lapply(files_to_process, FUN = function(this_file) {
     
     print(paste("Extracting data from", this_file))
     
@@ -18,7 +17,7 @@ extracted_tables <- lapply(files_to_process, FUN = function(this_file) {
         .[!grepl(x = ., pattern = "Software Inventory")] %>%
         paste(collapse = "") %>%
         read_html()
-        
+    
     # Extract data
     software_inventory <- this_file_parsed %>% 
         html_node("#softwareInventory") %>% 
@@ -37,26 +36,13 @@ extracted_tables <- lapply(files_to_process, FUN = function(this_file) {
     software_inventory$`Workstation Name` <- machine_info$`Workstation Name:`
     software_inventory$`Logon Credentials` <- machine_info$`Logon Credentials:`
     software_inventory$report_datetime <- report_datetime
-    
-    
-    # Write out with the name of the HTML file
-    output_path <- sub(x = basename(this_file), pattern = ".html", replacement = ".csv")
-    
-    print(paste("Writing extracted data to", output_path))
-    write.csv(software_info, file = output_path)
+
     
     extracted_table
     
-})
-
-
-
-# Quick check of the first few rows to make sure every table is looking good
-lapply(extracted_tables, head)
+}) %>% bind_rows()
 
 
 
 
-
-
-
+#write.csv(software_info_all, file = output_path)

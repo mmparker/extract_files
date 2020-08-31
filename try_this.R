@@ -24,11 +24,19 @@ this_file_parsed <- readLines(this_file) %>%
     paste(collapse = "") %>%
     read_html()
 
+software_inv
 
-software_inventory <- this_file_parsed %>% 
-    html_node("#softwareInventory") %>% 
-    html_table(header = TRUE)
+machine_info <- this_file_parsed %>% 
+    html_node("#machineInfo") %>% 
+    html_table(header = FALSE)
 
-str(software_inventory)
+
+
+# Does this print just the Workstation Name?
+machine_info[ grepl(x = machine_info[ , 1], pattern = 'Workstation Name'), 2]
+                                 
+
+machine_info[ grepl(x = machine_info[ , 1], pattern = 'Logon'), 2]
+
 
 

@@ -17,7 +17,7 @@ this_file <- files_to_process[1]
 this_file_parsed <- readLines(this_file) %>% 
     .[!grepl(x = ., pattern = "Software Inventory")] %>%
     paste(collapse = "") %>%
-    read_html()
+    read_html(header = TRUE)
 
 software_inventory <- this_file_parsed %>% 
     html_node("#softwareInventory") %>% 

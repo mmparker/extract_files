@@ -29,6 +29,6 @@ software_inventory <- this_file_parsed %>%
     html_node("#softwareInventory") %>% 
     html_table(header = TRUE)
 
-sr(software_inventory)
+str(software_inventory)
 
 

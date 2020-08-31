@@ -47,4 +47,4 @@ head(software_inventory_all)
 
 
 # Write to CSV
-#write.csv(software_inventory_all, file = output_path)
+#write.csv(software_inventory_all, file = "software_inventory_all.csv")

@@ -43,7 +43,7 @@ extracted_tables <- lapply(files_to_process, FUN = function(this_file) {
     output_path <- sub(x = basename(this_file), pattern = ".html", replacement = ".csv")
     
     print(paste("Writing extracted data to", output_path))
-    write.csv(renamed_table, file = output_path)
+    write.csv(software_info, file = output_path)
     
     extracted_table
     

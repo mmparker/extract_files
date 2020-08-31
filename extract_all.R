@@ -42,6 +42,9 @@ software_info_all <- lapply(files_to_process, FUN = function(this_file) {
 }) %>% bind_rows()
 
 
+# Check the results
+head(software_info_all)
 
 
+# Write to CSV
 #write.csv(software_info_all, file = output_path)

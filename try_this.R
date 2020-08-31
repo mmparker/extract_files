@@ -24,7 +24,6 @@ this_file_parsed <- readLines(this_file) %>%
     paste(collapse = "") %>%
     read_html()
 
-software_inv
 
 machine_info <- this_file_parsed %>% 
     html_node("#machineInfo") %>% 

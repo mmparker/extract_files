@@ -8,7 +8,7 @@ files_to_process <- list.files('r:/shared documents/',
 
 
 
-software_info_all <- lapply(files_to_process, FUN = function(this_file) {
+software_inventory_all <- lapply(files_to_process, FUN = function(this_file) {
     
     print(paste("Extracting data from", this_file))
     
@@ -37,14 +37,14 @@ software_info_all <- lapply(files_to_process, FUN = function(this_file) {
     software_inventory['Logon Credentials'] <- substr(machine_info[ grepl(x = machine_info[ , 1], pattern = 'Logon'), 2], 5, 100)
     software_inventory['Report Datetime'] <- report_datetime
     
-    extracted_table
+    software_inventory
     
 }) %>% bind_rows()
 
 
 # Check the results
-head(software_info_all)
+head(software_inventory_all)
 
 
 # Write to CSV
-#write.csv(software_info_all, file = output_path)
+#write.csv(software_inventory_all, file = output_path)

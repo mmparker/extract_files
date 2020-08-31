@@ -33,10 +33,9 @@ software_info_all <- lapply(files_to_process, FUN = function(this_file) {
     
     
     # Add software inventory 
-    software_inventory$`Workstation Name` <- machine_info$`Workstation Name:`
-    software_inventory$`Logon Credentials` <- machine_info$`Logon Credentials:`
-    software_inventory$report_datetime <- report_datetime
-
+    software_inventory['Workstation Name'] <- machine_info['Workstation Name:']
+    software_inventory['Logon Credentials'] <- machine_info['Logon Credentials:']
+    software_inventory['Report Datetime'] <- report_datetime
     
     extracted_table
     
